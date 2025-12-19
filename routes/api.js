@@ -1,3 +1,4 @@
+// routes/api.js
 import express from "express";
 import axios from "axios";
 
@@ -6,80 +7,80 @@ const router = express.Router();
 const API_BASE = process.env.API_BASE || "https://sementara.site/api";
 const API_TOKEN = process.env.API_TOKEN;
 
-const client = axios.create({
-  baseURL: API_BASE,
-  timeout: 20000,
-});
+function mustHaveToken(res) {
+  if (!API_TOKEN) {
+    res.status(500).json({
+      error: "Missing API_TOKEN",
+      hint: "Pastikan .env kebaca dan dotenv.config() dipanggil sebelum import routes",
+    });
+    return false;
+  }
+  return true;
+}
 
-function authHeaders() {
+function defaultHeaders() {
   return {
     Authorization: `Bearer ${API_TOKEN}`,
+    "User-Agent":
+      "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 Chrome/123 Safari/537.36",
+    Accept: "application/json, text/plain, */*",
+    "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
   };
 }
 
-// Debug helper
-function sendAxiosError(res, e) {
+function sendUpstreamError(res, e) {
   const status = e?.response?.status || 500;
-  const data = e?.response?.data || null;
-
-  console.error("UPSTREAM ERROR:", {
-    status,
-    url: e?.config?.baseURL + e?.config?.url,
-    params: e?.config?.params,
-    data,
-    message: e.message,
-  });
-
   res.status(status).json({
     error: "Upstream error",
     status,
-    upstream: data,
     message: e?.response?.data?.message || e.message,
+    upstream: e?.response?.data || null,
   });
 }
 
-// Generic GET proxy
-router.get("/:endpoint(*)", async (req, res) => {
+/**
+ * ✅ POST /api/watch/player
+ * upstream: POST https://sementara.site/api/watch/player?lang=in
+ * body: {"bookId":"...","chapterIndex":10,"lang":"in"}
+ */
+router.post("/watch/player", async (req, res) => {
   try {
-    if (!API_TOKEN) {
-      return res.status(500).json({
-        error: "Missing API_TOKEN",
-        hint: "Cek .env dan pastikan dotenv.config() dipanggil sebelum import routes",
-      });
-    }
+    if (!mustHaveToken(res)) return;
 
-    const endpoint = "/" + req.params.endpoint;
-    const r = await client.get(endpoint, {
-      params: req.query,
-      headers: authHeaders(),
+    const r = await axios.post(`${API_BASE}/watch/player?lang=in`, req.body, {
+      headers: {
+        ...defaultHeaders(),
+        "Content-Type": "application/json",
+      },
+      timeout: 20000,
     });
 
-    res.json(r.data);
+    res.status(r.status).json(r.data);
   } catch (e) {
-    sendAxiosError(res, e);
+    sendUpstreamError(res, e);
   }
 });
 
-// POST watch/player
-router.post("/watch/player", async (req, res) => {
+/**
+ * ✅ GET proxy generic
+ * contoh: /api/foryou/1?lang=in
+ */
+router.get("/:endpoint(*)", async (req, res) => {
   try {
-    if (!API_TOKEN) {
-      return res.status(500).json({
-        error: "Missing API_TOKEN",
-        hint: "Cek .env dan pastikan dotenv.config() dipanggil sebelum import routes",
-      });
-    }
+    if (!mustHaveToken(res)) return;
 
-    const r = await client.post("/watch/player?lang=in", req.body, {
-      headers: {
-        ...authHeaders(),
-        "Content-Type": "application/json",
-      },
+    const endpoint = req.params.endpoint; // contoh: "foryou/1"
+    const url = `${API_BASE}/${endpoint}`;
+
+    const r = await axios.get(url, {
+      params: req.query,
+      headers: defaultHeaders(),
+      timeout: 20000,
     });
 
-    res.json(r.data);
+    res.status(r.status).json(r.data);
   } catch (e) {
-    sendAxiosError(res, e);
+    sendUpstreamError(res, e);
   }
 });
 
