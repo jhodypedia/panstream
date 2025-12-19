@@ -1,0 +1,147 @@
+/* Glass + buttons */
+.glass { background: rgba(20,20,20,.65); backdrop-filter: blur(12px); }
+.section-title { font-weight: 800; font-size: 16px; letter-spacing: .2px; }
+.pill {
+  padding: 9px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  color: rgba(255,255,255,.85);
+  font-size: 12px;
+}
+.pill:hover { background: rgba(255,255,255,.10); }
+
+.input{
+  width:100%; border-radius:16px; padding:14px 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  outline:none;
+}
+.input:focus{ border-color: rgba(239,68,68,.7); }
+
+.btn-primary{
+  background: linear-gradient(135deg, #ef4444, #ec4899);
+  padding: 10px 14px; border-radius: 14px; font-weight: 700;
+}
+.btn-primary:hover{ filter: brightness(1.05); }
+
+.btn-ghost{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 10px 14px; border-radius: 14px; font-weight: 700;
+}
+.btn-danger{
+  background: rgba(239,68,68,.14);
+  border: 1px solid rgba(239,68,68,.25);
+  padding: 10px 14px; border-radius: 14px; font-weight: 700;
+}
+
+/* Nav */
+.nav-btn{
+  width: 20%;
+  padding: 10px 0;
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  color: rgba(255,255,255,.65);
+  border-radius: 14px;
+}
+.nav-btn:hover{ color:#fff; }
+.nav-ico{ font-size: 18px; line-height: 18px; }
+.nav-txt{ font-size: 11px; }
+
+.topnav-btn{
+  padding: 10px 12px;
+  border-radius: 999px;
+  color: rgba(255,255,255,.75);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: 13px;
+}
+.topnav-btn:hover{ color:#fff; background: rgba(255,255,255,.08); }
+
+/* Cards */
+.poster {
+  border-radius: 16px;
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.poster img { width:100%; height: 168px; object-fit: cover; display:block; }
+@media (min-width: 768px){
+  .poster img { height: 190px; }
+}
+.poster .meta { padding: 10px 10px 12px; }
+.poster .t { font-weight: 700; font-size: 12px; line-height: 1.2; }
+.poster .s { color: rgba(255,255,255,.55); font-size: 11px; margin-top: 4px; }
+
+/* Horizontal scroll */
+.hscroll{
+  display:flex; gap:10px; overflow:auto; padding: 6px 2px 10px;
+  scrollbar-width: none;
+}
+.hscroll::-webkit-scrollbar{ display:none; }
+.contCard{
+  min-width: 190px; max-width: 190px;
+  border-radius: 16px; overflow:hidden;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+}
+.contCard img{ width:100%; height: 110px; object-fit:cover; display:block; }
+.contCard .p{ height: 3px; background: rgba(255,255,255,.12); }
+.contCard .p > div{ height:100%; background: linear-gradient(90deg,#ef4444,#ec4899); width:0%; }
+.contCard .m{ padding:10px; }
+.contCard .m .t{ font-weight:800; font-size:12px; line-height:1.2; }
+.contCard .m .s{ color: rgba(255,255,255,.55); font-size:11px; margin-top: 4px; }
+
+/* Suggest box */
+.suggest{
+  position:absolute; top: 56px; left:0; right:0;
+  border-radius: 16px;
+  background: rgba(10,10,10,.96);
+  border: 1px solid rgba(255,255,255,.10);
+  overflow:hidden;
+  z-index: 20;
+}
+.suggest button{
+  width:100%; text-align:left; padding: 12px 12px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  color: rgba(255,255,255,.85);
+}
+.suggest button:hover{ background: rgba(255,255,255,.06); }
+
+/* Player */
+.playerOverlay{
+  position: fixed; inset:0; z-index: 60; background:#000;
+}
+.playerTop{
+  position:absolute; top:0; left:0; right:0;
+  display:flex; align-items:center; gap:10px;
+  padding: 14px 12px;
+  background: linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,0));
+  z-index: 3;
+}
+.iconBtn{
+  width: 42px; height: 42px; border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.10);
+  color: #fff; font-size: 18px;
+}
+
+.playerVideoWrap{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; }
+.playerVideo{ width:100%; height:100%; object-fit: contain; background:#000; }
+
+.playerControls{
+  position:absolute; left:0; right:0; bottom:0;
+  padding: 14px 12px 18px;
+  background: linear-gradient(0deg, rgba(0,0,0,.92), rgba(0,0,0,0));
+  z-index: 3;
+}
+
+.ctrlBtn{
+  padding: 10px 12px; border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  font-weight: 800;
+}
+#plSeek{ width:100%; }
+
+/* Small utility */
+.hidden{ display:none; }
