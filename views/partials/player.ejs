@@ -1,0 +1,41 @@
+<div class="playerOverlay">
+  <div class="playerTop">
+    <button id="btnClosePlayer" class="iconBtn">✕</button>
+    <div class="truncate">
+      <div id="plTitle" class="text-sm font-semibold truncate"></div>
+      <div id="plMeta" class="text-xs text-white/60 truncate"></div>
+    </div>
+  </div>
+
+  <div class="playerVideoWrap">
+    <video id="plVideo" class="playerVideo" playsinline></video>
+
+    <div id="plControls" class="playerControls">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-2">
+          <button id="btnPlayPause" class="ctrlBtn">▶</button>
+          <button id="btnBack10" class="ctrlBtn">-10</button>
+          <button id="btnFwd10" class="ctrlBtn">+10</button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="btnSpeed" class="ctrlBtn">1x</button>
+          <button id="btnFullscreen" class="ctrlBtn">⛶</button>
+        </div>
+      </div>
+
+      <div class="mt-3">
+        <input id="plSeek" type="range" min="0" max="1000" value="0" />
+        <div class="flex justify-between text-xs text-white/60 mt-1">
+          <span id="plTime">00:00</span>
+          <span id="plDur">00:00</span>
+        </div>
+      </div>
+
+      <div class="mt-3 flex items-center justify-between gap-2">
+        <button id="btnPrevEp" class="btn-ghost">⟵ Prev</button>
+        <button id="btnNextEp" class="btn-primary">Next ⟶</button>
+      </div>
+    </div>
+  </div>
+</div>
