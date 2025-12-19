@@ -1,5 +1,7 @@
-import express from "express";
 import dotenv from "dotenv";
+dotenv.config(); // ✅ HARUS DI ATAS SEBELUM import route yang pakai process.env
+
+import express from "express";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,9 +9,8 @@ import { fileURLToPath } from "url";
 import pageRoutes from "./routes/page.js";
 import apiRoutes from "./routes/api.js";
 
-dotenv.config();
-
 const app = express();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
