@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Drama China Streaming</title>
+  <meta name="description" content="Streaming drama China terbaru, populer, rekomendasi, dan nonton episode dengan player premium." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="/public/css/style.css" />
+</head>
+
+<body class="bg-black text-white overflow-x-hidden">
+  <!-- Desktop topbar -->
+  <header class="hidden md:flex sticky top-0 z-40 bg-black/70 backdrop-blur border-b border-white/10">
+    <div class="max-w-6xl mx-auto w-full px-5 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500 to-pink-500"></div>
+        <div>
+          <div class="font-bold tracking-wide">DramaChina</div>
+          <div class="text-xs text-white/60 -mt-0.5">Pro streaming experience</div>
+        </div>
+      </div>
+
+      <nav class="flex items-center gap-2">
+        <button class="topnav-btn" data-page="home">Home</button>
+        <button class="topnav-btn" data-page="popular">Popular</button>
+        <button class="topnav-btn" data-page="new">New</button>
+        <button class="topnav-btn" data-page="search">Search</button>
+        <button class="topnav-btn" data-page="history">History</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="app" class="min-h-screen pb-24 md:pb-10"></main>
+
+  <!-- Mobile bottom nav -->
+  <nav class="fixed bottom-0 left-0 right-0 z-40 md:hidden">
+    <div class="mx-auto max-w-md px-3 pb-3">
+      <div class="glass rounded-2xl px-2 py-2 flex justify-between border border-white/10">
+        <button class="nav-btn" data-page="home">
+          <span class="nav-ico">⌂</span><span class="nav-txt">Home</span>
+        </button>
+        <button class="nav-btn" data-page="popular">
+          <span class="nav-ico">★</span><span class="nav-txt">Popular</span>
+        </button>
+        <button class="nav-btn" data-page="new">
+          <span class="nav-ico">＋</span><span class="nav-txt">New</span>
+        </button>
+        <button class="nav-btn" data-page="search">
+          <span class="nav-ico">⌕</span><span class="nav-txt">Search</span>
+        </button>
+        <button class="nav-btn" data-page="history">
+          <span class="nav-ico">↺</span><span class="nav-txt">History</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Player Mount -->
+  <div id="playerMount"></div>
+
+  <script src="/public/js/main.js"></script>
+</body>
+</html>
